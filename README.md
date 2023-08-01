@@ -16,6 +16,10 @@ But to create this table must follow two rules:
 1. The customer goes to the wallet of the seller where he had the most orders
 2. if this is tied, it remains in the wallet of the seller who had the most recent sale.
 
+Obs:
+- I'm considering the numbers of orders, the distinct count of SalesID column.
+- The date column is the OrderDate.
+
 ## Dataset
 
 The dataset folder contains 3 files:
@@ -33,7 +37,7 @@ You can use this file to try to solve the problem with Power BI or any tool you 
 2. I calculated a ranking ordered by total orders and most recent sale and partitioned by customer to ensure the rankings reset for each customer.
 3. Filtered all the first positions of the rank
 
-I created three files showing the DAX code of three different solutions for the problem, it's the file with '.dax' ending.
+I created three files showing the DAX code of three different solutions for the problem, they are in the solutions folder.
 And made available the pbix file with resulting tables inside.
 
 
