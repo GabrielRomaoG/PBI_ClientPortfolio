@@ -1,0 +1,18 @@
+dClientPortfolio_INDEX = 
+
+VAR tabEmployeeCustomer = 
+    SUMMARIZECOLUMNS(
+        fOrders[EmployeeID]
+        ,fOrders[CustomerID]
+    )
+
+VAR tabPortfolio = 
+    INDEX(
+        1
+        ,tabEmployeeCustomer
+        ,ORDERBY([TotalOrders], DESC, [LastPurchase], DESC)
+        ,,PARTITIONBY(fOrders[CustomerID])
+    )
+
+RETURN
+    tabPortfolio

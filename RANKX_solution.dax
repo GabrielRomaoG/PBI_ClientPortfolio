@@ -1,0 +1,22 @@
+dClientPortfolio_RANKX = 
+VAR varMaxDataAll = CONVERT([LastPurchase], INTEGER)
+
+VAR tabEmployeeCustomer = 
+    SUMMARIZECOLUMNS(
+        fOrders[EmployeeID]
+        ,fOrders[CustomerID]
+    )
+
+VAR tabPortfolio = 
+FILTER(
+
+    tabEmployeeCustomer
+    ,RANKX(
+        ALL(fOrders[EmployeeID]),
+        [TotalOrders] * varMaxDataAll + CONVERT([LastPurchase], INTEGER)
+        ,, DESC, Dense
+    ) = 1
+)
+
+RETURN
+    tabPortfolio
